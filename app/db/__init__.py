@@ -1,5 +1,5 @@
 from os import getenv
-from sqlalchemy.orm import declarative_base
+from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from dotenv import load_dotenv
@@ -16,7 +16,7 @@ def init_db(app):
   Base.metadata.create_all(engine)
 
   app.teardown_appcontext(close_db)
-  
+
 def get_db():
   if 'db' not in g:
     # store db connection in app context
